@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1073035466768",
+    "project_id": "shokuni-6afaa",
+    "storage_bucket": "shokuni-6afaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073035466768:android:e963253a803ef013139295",
+        "android_client_info": {
+          "package_name": "com.destructive.shokuni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073035466768-d1mgmimbbkiqnl4pb5797b3q5358rig8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5115PRhvgWQoNHHpRuigRyopVGMQyun8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073035466768-d1mgmimbbkiqnl4pb5797b3q5358rig8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1073035466768-99n7p4041efivefcu1997rl323o42q8i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.destructive.shokunibarber"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073035466768:android:a75545de49056dfd139295",
+        "android_client_info": {
+          "package_name": "com.destructive.shokuni_consumer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073035466768-d1mgmimbbkiqnl4pb5797b3q5358rig8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5115PRhvgWQoNHHpRuigRyopVGMQyun8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073035466768-d1mgmimbbkiqnl4pb5797b3q5358rig8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1073035466768-99n7p4041efivefcu1997rl323o42q8i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.destructive.shokunibarber"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

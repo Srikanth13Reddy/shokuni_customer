@@ -1,0 +1,17 @@
+export 'package:shokuni_customer/pages/forgotpassword/forgotpassword_page.dart';
+export 'package:shokuni_customer/pages/forgotpassword/forgotpasswordverified_page.dart';
+export 'package:shokuni_customer/pages/history/history_page.dart';
+export 'package:shokuni_customer/pages/home/barberDetails_page.dart';
+export 'package:shokuni_customer/pages/home/finish_page.dart';
+export 'package:shokuni_customer/pages/home/googlemap_page.dart';
+export 'package:shokuni_customer/pages/home/home_page.dart';
+export 'package:shokuni_customer/pages/home/perfectcut.dart';
+export 'package:shokuni_customer/pages/login/login_page.dart';
+export 'package:shokuni_customer/pages/notification/notification_page.dart';
+export 'package:shokuni_customer/pages/payment/card_page.dart';
+export 'package:shokuni_customer/pages/payment/cardsdetails_page.dart';
+export 'package:shokuni_customer/pages/payment/payment_page.dart';
+export 'package:shokuni_customer/pages/profile/profiledetails_page.dart';
+export 'package:shokuni_customer/pages/register/register_page.dart';
+export 'package:shokuni_customer/pages/verification/verification_page.dart';
+export 'package:shokuni_customer/pages/changepassword/changepassword_page.dart';
