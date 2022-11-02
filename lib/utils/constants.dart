@@ -1,9 +1,10 @@
-const String shokuniText = 'shokuni';
+const String shokuniText = 'Shokuni';
 const String barberText = 'barbershop';
 
 const String verifyCodeText = 'VERIFICATION CODE';
 const String areYouSureText = "Are you sure ?";
 const String doYouWantLogoutText = "Do you want to logout";
+const String doYouWantExit = "Do you want to exit";
 const String verificationText = 'We just need to verify you entered the';
 const String paymentAccText = 'No money will be taken from your account';
 const String forgotPassText = 'Password reset details have been';
@@ -22,7 +23,7 @@ const String cardDetailText = 'Card Details';
 const String card1Text = 'Card ';
 const String phoneText = 'Mobile';
 const String cscText = 'CCV';
-const String expiryText = 'Expiry Date';
+const String expiryText = 'Expiry Date(MM/YY)';
 const String passwordText = 'Password';
 const String cancelText = 'Cancel';
 const String okText = 'ok';

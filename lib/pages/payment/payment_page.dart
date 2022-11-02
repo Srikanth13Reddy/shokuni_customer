@@ -4,6 +4,8 @@ import 'package:shokuni_customer/styles/styles.dart';
 import 'package:shokuni_customer/utils/utils.dart';
 import 'package:shokuni_customer/widgets/widgets.dart';
 
+import '../../main.dart';
+
 class PaymentPage extends StatefulWidget {
   static const String routeName = '/payment';
   const PaymentPage({Key? key}) : super(key: key);
@@ -57,6 +59,7 @@ class _PaymentPageState extends State<PaymentPage> {
       child: ListView(
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          cancelBtn(),
           shokuniTitle(),
           babertitle(),
           paymentTitle(),
@@ -78,10 +81,22 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 
+  Widget cancelBtn()
+  {
+    return Align(alignment: Alignment.topLeft,
+      child: IconButton(
+        icon: const Icon(Icons.clear,color: riverBedBlueColor,),
+        onPressed: () {
+          navigatorKey.currentState!.pop();
+        },
+      ),
+    );
+  }
+
   Widget shokuniTitle() {
     return CustomText(
         txtName: shokuniText,
-        margin: const EdgeInsets.only(left: 25, top: 100),
+        margin: const EdgeInsets.only(left: 25, top: 45),
         style: titleBoldTextStyle,
         align: TextAlign.start);
   }
@@ -131,6 +146,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
   Widget _buildCardNumber() {
     return CustomTextFormFieldWidget(
+      mask: '#### #### #### ####',
       margin: const EdgeInsets.only(left: 25, top: 20, right: 25),
       hintText: cardText,
       onFieldTap: () {},
@@ -175,6 +191,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
   Widget _buildCardExpiry() {
     return CustomTextFormFieldWidget(
+      mask: '##/##',
       margin: const EdgeInsets.only(left: 25, top: 20, right: 25),
       hintText: expiryText,
       onFieldTap: () {},
@@ -187,7 +204,7 @@ class _PaymentPageState extends State<PaymentPage> {
       filledColor: whiteColor,
       isFilled: true,
       validator: (value) =>
-          commonValidator(value, "Please Enter Expiry Date 00/00 format"),
+          commonValidator(value, "Please Enter Expiry Date MM/YY format"),
       textStyle: textBoxTextStyle,
       enabled: false,
     );

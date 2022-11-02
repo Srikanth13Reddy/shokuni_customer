@@ -54,6 +54,7 @@ dependencies:
   location: ^4.4.0
   flutter_polyline_points: ^1.0.0
   fluttertoast: ^8.0.9
+  masked_text: ^1.1.2
 
 
 

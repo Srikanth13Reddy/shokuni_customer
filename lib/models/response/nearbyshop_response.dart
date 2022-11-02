@@ -102,6 +102,7 @@ class Open {
   String? distance;
   int? priceRange;
   int? waitTime;
+  int? wait_list;
   String? headerImage;
   String? saloonLogo;
   List<CutType>? cutType;
@@ -127,6 +128,7 @@ class Open {
       this.headerImage,
       this.saloonLogo,
       this.cutType,
+      this.wait_list,
       this.cutExtras});
 
   Open.fromJson(Map<String, dynamic> json) {
@@ -148,6 +150,7 @@ class Open {
     waitTime = json['wait_time'];
     headerImage = json['header_image'];
     saloonLogo = json['saloon_logo'];
+    wait_list = json['wait_list'];
     if (json['cut_type'] != null) {
       cutType = <CutType>[];
       json['cut_type'].forEach((v) {
@@ -182,6 +185,7 @@ class Open {
     data['wait_time'] = waitTime;
     data['header_image'] = headerImage;
     data['saloon_logo'] = saloonLogo;
+    data['wait_list'] = wait_list;
     if (cutType != null) {
       data['cut_type'] = cutType!.map((v) => v.toJson()).toList();
     }

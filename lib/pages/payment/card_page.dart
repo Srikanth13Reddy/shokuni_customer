@@ -3,6 +3,7 @@ import 'package:shokuni_customer/models/response/cardsdetails_response.dart';
 import 'package:shokuni_customer/styles/styles.dart';
 import 'package:shokuni_customer/utils/utils.dart';
 import 'package:shokuni_customer/widgets/widgets.dart';
+import 'package:masked_text/masked_text.dart';
 
 class CardPage extends StatefulWidget {
   static const String routeName = '/card';

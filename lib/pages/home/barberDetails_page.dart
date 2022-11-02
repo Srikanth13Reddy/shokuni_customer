@@ -234,11 +234,11 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
         padding: const EdgeInsets.only(top: 290, left: 200),
         child: RichText(
           text: TextSpan(
-            text: args.data!.waitTime.toString(),
+            text: args.data!.wait_list.toString(),
             style: lightTextStyle,
             children: <TextSpan>[
               TextSpan(
-                text: 'min',
+                text: 'mem',
                 style: blueSubScriptTextStyle,
               ),
             ],
@@ -332,48 +332,7 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
       child: Center(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: ImageIcon(
-                AssetImage("assets/images/location.png"),
-                size: 20,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              args.data!.address!,
-              style: textsemiStyle,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
-              args.data!.distance.toString(),
-              style: textsemiStyle,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              directionText,
-              style: textsemiStyle,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              args.data!.contactNumber!,
-              style: textsemiBoldStyle,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Divider(
-              height: 4,
-              thickness: 1.5,
-            ),
+
             Theme(
               data:
                   Theme.of(context).copyWith(dividerColor: Colors.transparent),
@@ -420,7 +379,7 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 0,
             ),
             const Divider(
               height: 4,
@@ -472,7 +431,53 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
               ),
             ),
             const SizedBox(
+              height: 25,
+            ),
+            const Divider(
+              height: 4,
+              thickness: 1.5,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: ImageIcon(
+                AssetImage("assets/images/location.png"),
+                size: 20,
+              ),
+            ),
+            const SizedBox(
               height: 10,
+            ),
+            Text(
+              args.data!.address!,
+              style: textsemiStyle,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              args.data!.distance.toString(),
+              style: textsemiStyle,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              directionText,
+              style: textsemiStyle,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              args.data!.contactNumber!,
+              style: textsemiBoldStyle,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Divider(
+              height: 4,
+              thickness: 1.5,
             ),
           ],
         ),

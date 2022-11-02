@@ -4,6 +4,8 @@ import 'package:shokuni_customer/styles/styles.dart';
 import 'package:shokuni_customer/utils/utils.dart';
 import 'package:shokuni_customer/widgets/widgets.dart';
 
+import '../../main.dart';
+
 class RegisterPage extends StatefulWidget {
   static const String routeName = '/register';
   const RegisterPage({Key? key}) : super(key: key);
@@ -54,6 +56,14 @@ class _RegisterPageState extends State<RegisterPage> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: ListView(
         children: [
+          Align(alignment: Alignment.topLeft,
+            child: IconButton(
+              icon: const Icon(Icons.clear,color: riverBedBlueColor,),
+              onPressed: () {
+                navigatorKey.currentState!.pop();
+              },
+            ),
+          ),
           shokuniTitle(),
           babertitle(),
           registertitle(),
@@ -72,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget shokuniTitle() {
     return CustomText(
         txtName: shokuniText,
-        margin: const EdgeInsets.only(left: 25, top: 90),
+        margin: const EdgeInsets.only(left: 25, top: 40),
         style: titleBoldTextStyle,
         align: TextAlign.start);
   }
@@ -100,6 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _buildfirstname() {
     return CustomTextFormFieldWidget(
+
       margin: const EdgeInsets.only(left: 25, top: 20, right: 25),
       hintText: firstNameText,
       onFieldTap: () {},
@@ -180,7 +191,7 @@ class _RegisterPageState extends State<RegisterPage> {
             filled: true,
             prefixIcon: const Padding(
               padding: EdgeInsets.only(left: 15, top: 15),
-              child: Text("+1"),
+              child: Text("+44"),
             ),
             hintText: phoneText,
             disabledBorder: OutlineInputBorder(

@@ -1,3 +1,4 @@
+import 'package:masked_text/masked_text.dart';
 import 'package:shokuni_customer/styles/styles.dart';
 
 /// *  textInputType - The type of information for which to optimize the text input control.
@@ -30,6 +31,7 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final TextStyle textStyle;
   final bool enabled;
   final double radius;
+  final String? mask;
 
   const CustomTextFormFieldWidget({
     Key? key,
@@ -37,6 +39,7 @@ class CustomTextFormFieldWidget extends StatefulWidget {
     required this.hintText,
     required this.focusNode,
     required this.textInputType,
+     this.mask,
     this.defaultText,
     this.obscureText = false,
     required this.controller,
@@ -67,7 +70,8 @@ class _TextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
         data: Theme.of(context).copyWith(
           primaryColor: blueZodiacColor,
         ),
-        child: TextFormField(
+        child: MaskedTextField(
+          mask: widget.mask,
           cursorColor: blueZodiacColor,
           obscureText: widget.obscureText,
           keyboardType: widget.textInputType,

@@ -27,6 +27,8 @@ class _HomePageState extends State<HomePage> {
   String latitudesource = '';
   String longitudesource = '';
   LocationData? currentLocation;
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+  new GlobalKey<RefreshIndicatorState>();
 
   void getCurrentLocation() async {
     Location location = Location();
@@ -127,6 +129,8 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          centerTitle: true,
+          leading: Text(''),
           title: Text(
             shokuniText,
             style: whiteboldtextStyle,
@@ -157,15 +161,23 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+  Future<void> _refresh() {
+    getCurrentLocation();
+    return Future.delayed(const Duration(seconds: 0), () {});
+  }
 
   Widget body() {
-    return ListView(children: [
-      map(),
-      // dividerCommingsoon(),
-      //nearbyShopComming(),
-      dividerOpen(),
-      nearbyshopOpen(),
-    ]);
+    return RefreshIndicator(
+      key: _refreshIndicatorKey,
+      onRefresh: _refresh,
+      child: ListView(children: [
+        map(),
+        // dividerCommingsoon(),
+        //nearbyShopComming(),
+        dividerOpen(),
+        nearbyshopOpen(),
+      ]),
+    );
   }
 
   Widget map() {
@@ -216,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-          ),
+          ), 
         ],
       ),
     );
@@ -288,71 +300,99 @@ class _HomePageState extends State<HomePage> {
       shrinkWrap: true,
       itemCount: openshoplist.length,
       itemBuilder: (context, index) {
-        return Card(
-          elevation: 7,
-          margin: const EdgeInsets.all(10),
-          child: ListTile(
-            contentPadding: const EdgeInsets.only(left: 10),
-            leading: Image.network(
-              openshoplist[index].headerImage!,
-              height: 70,
-              width: 70,
-            ),
-            title: Text(
-              openshoplist[index].name!,
-              style: normalsemitextStyle,
-            ),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const ImageIcon(
-                    AssetImage("assets/images/location.png"),
-                    size: 10,
-                  ),
-                  Expanded(
-                    child: Container(
-                      width: 200,
-                      padding: const EdgeInsets.only(left: 6, right: 10),
-                      child: Text(openshoplist[index].address!),
-                    ),
-                  ),
-                  const ImageIcon(
-                    AssetImage("assets/images/clock.png"),
-                    size: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 6, right: 40),
-                    child: Text(openshoplist[index].waitTime.toString()),
-                  ),
-                  const ImageIcon(
-                    AssetImage("assets/images/price-tag.png"),
-                    size: 10,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 6),
-                      child: Text(
-                        openshoplist[index].priceRange.toString(),
-                      ),
-                    ),
-                  ),
-                ],
+        return
+          GestureDetector(
+          onTap: (){
+            navigatorKey.currentState!
+                .pushNamed(BarberDetailsPage.routeName,
+                arguments: Arguments(
+                    data: openshoplist[index],
+                    promotiondetails: promotiondetails))
+                .then((value) => getlocaldata());
+          },
+          child: Card(
+            elevation: 7,
+            margin: const EdgeInsets.all(10),
+            child: ListTile(
+              contentPadding: const EdgeInsets.only(left: 10),
+              leading: Image.network(
+                openshoplist[index].headerImage!,
+                height: 70,
+                width: 70,
               ),
+              title: Text(
+                openshoplist[index].name!,
+                style: normalsemitextStyle,
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Table(
+                 // mainAxisAlignment: MainAxisAlignment.start,
+                  columnWidths: const {
+                    0: FlexColumnWidth(),
+                    1: FlexColumnWidth(),
+                    2: FlexColumnWidth(),
+                  },
+                  children: [
+                    TableRow(
+                       children: [
+                         Row(children: [
+                         const ImageIcon(
+                           AssetImage("assets/images/location.png"),
+                           size: 10,
+                         ),
+                         Flexible(
+                           child: Container(
+                             padding: const EdgeInsets.only(left: 6, right: 6),
+                             child: Text(openshoplist[index].address!,maxLines: 1, style: textBoxTextStyle,)
+                           ),
+                         ),
+                       ],),
+                         Row(children: [
+                           const ImageIcon(
+                             AssetImage("assets/images/clock.png"),
+                             size: 10,
+                           ),
+                           Flexible(
+                             child: Padding(
+                               padding: const EdgeInsets.only(left: 6, right: 6),
+                               child: Text(openshoplist[index].wait_list.toString(),maxLines: 1, style: textBoxTextStyle,),
+                             ),
+                           ),
+                         ],),
+                         Row(children: [
+                           const ImageIcon(
+                             AssetImage("assets/images/price-tag.png"),
+                             size: 10,
+                           ),
+                           Flexible(
+                             child: Padding(
+                               padding: const EdgeInsets.only(left: 6),
+                               child: Text(
+                                 openshoplist[index].priceRange.toString(),
+                                 style: textBoxTextStyle,
+                                 maxLines: 1,
+                               ),
+                             ),
+                           ),
+                         ],)])
+
+                  ],
+                ),
+              ),
+              trailing: IconButton(
+                  icon: const Icon(Icons.arrow_forward_ios_outlined),
+                  color: Colors.black26,
+                  iconSize: 20,
+                  onPressed: () {
+                    navigatorKey.currentState!
+                        .pushNamed(BarberDetailsPage.routeName,
+                        arguments: Arguments(
+                            data: openshoplist[index],
+                            promotiondetails: promotiondetails))
+                        .then((value) => getlocaldata());
+                  }),
             ),
-            trailing: IconButton(
-                icon: const Icon(Icons.arrow_forward_ios_outlined),
-                color: Colors.black26,
-                iconSize: 20,
-                onPressed: () {
-                  navigatorKey.currentState!
-                      .pushNamed(BarberDetailsPage.routeName,
-                      arguments: Arguments(
-                          data: openshoplist[index],
-                          promotiondetails: promotiondetails))
-                      .then((value) => getlocaldata());
-                }),
           ),
         );
       },
