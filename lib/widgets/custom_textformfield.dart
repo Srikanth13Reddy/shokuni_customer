@@ -70,8 +70,8 @@ class _TextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
         data: Theme.of(context).copyWith(
           primaryColor: blueZodiacColor,
         ),
-        child: MaskedTextField(
-          mask: widget.mask,
+        child: widget.mask==null||widget.mask!.isEmpty?TextFormField(
+          //mask: widget.mask,
           cursorColor: blueZodiacColor,
           obscureText: widget.obscureText,
           keyboardType: widget.textInputType,
@@ -94,6 +94,58 @@ class _TextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                 borderRadius: BorderRadius.circular(widget.radius),
                 borderSide:
                     const BorderSide(color: mediumGreyColor, width: 1.0)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(widget.radius),
+                borderSide: const BorderSide(color: roseColor, width: 1.0)),
+            hintStyle: const TextStyle(
+              color: Colors.grey,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w300,
+              fontStyle: FontStyle.normal,
+              letterSpacing: 1.2,
+            ),
+            contentPadding: EdgeInsets.only(
+                top: 12, bottom: bottomPaddingToError, left: 8.0, right: 8.0),
+            isDense: true,
+            errorStyle: const TextStyle(
+              color: darkredColor,
+              fontSize: 12.0,
+              fontWeight: fontMedium,
+              letterSpacing: 1.2,
+            ),
+          ),
+          controller: widget.controller,
+          validator: (value) => widget.validator(value!),
+          onFieldSubmitted: (value) {
+            widget.onSubmitField();
+          },
+          onTap: () {
+            widget.onFieldTap();
+          },
+        ):MaskedTextField(
+          mask: widget.mask,
+          cursorColor: blueZodiacColor,
+          obscureText: widget.obscureText,
+          keyboardType: widget.textInputType,
+          textInputAction: widget.actionKeyboard,
+          textCapitalization: TextCapitalization.sentences,
+          focusNode: widget.focusNode,
+          style: widget.textStyle,
+          readOnly: widget.enabled,
+          initialValue: widget.defaultText,
+          decoration: InputDecoration(
+            fillColor: widget.filledColor,
+            filled: widget.isFilled,
+            prefixIcon: widget.prefixIcon,
+            hintText: widget.hintText,
+            disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(widget.radius),
+                borderSide:
+                const BorderSide(color: mediumGreyColor, width: 1.0)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(widget.radius),
+                borderSide:
+                const BorderSide(color: mediumGreyColor, width: 1.0)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.radius),
                 borderSide: const BorderSide(color: roseColor, width: 1.0)),

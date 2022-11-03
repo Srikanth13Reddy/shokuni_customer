@@ -26,7 +26,7 @@ class _VerificationPageState extends State<VerificationPage> {
               child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                   child: Container(
-                    color: frostColor.withOpacity(0.7),
+                    color: frostColor.withOpacity(0.5),
                     alignment: Alignment.center,
                     child: Scaffold(
                       backgroundColor: Colors.transparent,
