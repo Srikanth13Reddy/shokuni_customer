@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
 
-    //getlocaldata();
+    getlocaldata();
 
     /*location.onLocationChanged.listen(
       (newLoc) {
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
       username = username;
     });
     customerBlocs.add(NearByShopClickEvent(latitudesource, longitudesource));
-    //customerBlocs.add(NearByShopClickEvent("10.9934702", "77.1027225"));
+    customerBlocs.add(NearByShopClickEvent("10.9934702", "77.1027225"));
   }
 
   @override

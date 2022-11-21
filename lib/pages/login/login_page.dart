@@ -22,10 +22,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final UserBloc _userBloc = UserBloc();
-  final _emailController = TextEditingController(text: "shokunicustomer@gmail.com");
+  final _emailController = TextEditingController(text: "srikanthy+001@apptomate.co");
   //text: "sourabh@webworldexpertsindia.com"
   //text: "shokunicustomer@gmail.com"
-  final _passwordController = TextEditingController(text: "62fb98344e8e1");
+  final _passwordController = TextEditingController(text: "637b2f573aa44");
   //text: "5bf4f557bebc9"
   //text: "62fb98344e8e1"
   final _emailFocus = FocusNode();
