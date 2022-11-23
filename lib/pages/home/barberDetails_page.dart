@@ -1,3 +1,5 @@
+import 'package:shokuni_customer/pages/home/home_page.dart';
+
 import '../../main.dart';
 import 'package:shokuni_customer/blocs/bloc.dart';
 import 'package:shokuni_customer/cache/local_storage.dart';
@@ -39,6 +41,8 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
   String? barberId;
   AlreadyInQueueResponse? queueData;
 
+  bool isInChar=false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -48,6 +52,7 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
   }
 
   Future<void> _refresh() {
+
     getLocalData();
     return Future.delayed(const Duration(seconds: 0), () {});
   }
@@ -116,13 +121,16 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
   }
 
   Widget showButtons() {
+
     if (queueData != null && queueData!.data != null) {
       if (queueData!.data!.saloonId.toString() == args.data!.id.toString() &&
-          queueData!.data!.state == "waiting") {
+          queueData!.data!.state == "waiting")
+      {
         return cancelqueuebtn();
       } else if (queueData!.data!.saloonId.toString() !=
           args.data!.id.toString()) {
-        if (queueData!.message == "You are already in queue.") {
+        if (queueData!.message == "You are already in queue.")
+        {
           return emptyWidget();
         }
         if (queueData!.data!.state == "attending") {
@@ -139,8 +147,11 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
   }
 
   Widget emptyWidget() {
+    isInChar=true;
     return CustomBtn(
-      onPressed: () {},
+      onPressed: () {
+        CustomAlertDialog.showToast(queueData!.message??"");
+      },
       buttonCornerRadius: 0,
       buttonBorderColor: roseColor,
       textScaleFactor: 1,
@@ -167,6 +178,15 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
   }
 
   Widget joinqueuebtn() {
+
+    if(isInChar)
+      {
+        CustomAlertDialog.showToast('Cut is Completed');
+        navigatorKey.currentState!.pushNamed(HomePage.routeName);
+
+
+      }
+
     return CustomBtn(
       onPressed: () {
         List<String> cuttype = [];
@@ -258,11 +278,11 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
         padding: const EdgeInsets.only(top: 290, left: 200),
         child: RichText(
           text: TextSpan(
-            text: args.data!.wait_list.toString(),
+            text: args.data!.waitTime.toString(),
             style: lightTextStyle,
             children: <TextSpan>[
               TextSpan(
-                text: 'mem',
+                text: 'Min',
                 style: blueSubScriptTextStyle,
               ),
             ],

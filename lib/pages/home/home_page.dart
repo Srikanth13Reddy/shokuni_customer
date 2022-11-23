@@ -363,7 +363,7 @@ class _HomePageState extends State<HomePage> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 6, right: 6),
                               child: Text(
-                                openshoplist[index].wait_list.toString(),
+                                "${openshoplist[index].waitTime.toString()} min",
                                 maxLines: 1,
                                 style: textBoxTextStyle,
                               ),
@@ -381,7 +381,7 @@ class _HomePageState extends State<HomePage> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 6),
                               child: Text(
-                                openshoplist[index].priceRange.toString(),
+                                _getStandardPrice(openshoplist[index].cutType),
                                 style: textBoxTextStyle,
                                 maxLines: 1,
                               ),
@@ -410,6 +410,23 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+  }
+  
+  String _getStandardPrice(List<CutType>? cutType)
+  {
+    List<num> list=[];
+    for(var data in cutType! )
+      {
+        list.add(num.parse(data.amount??'0'));
+      }
+    if(list.length>0)
+      {
+        list.sort();
+        return list.last.toString();
+      }else{
+      return '0';
+    }
+
   }
 
   Widget nearbyShopComming() {
@@ -518,8 +535,10 @@ class _HomePageState extends State<HomePage> {
                   homeText,
                   "assets/images/home.png",
                   () {
-                    navigatorKey.currentState!
-                        .pushNamed(PerfectCutPage.routeName);
+                   /* navigatorKey.currentState!
+                        .pushNamed(PerfectCutPage.routeName);*/
+                    navigatorKey.currentState!.pop();
+
                   },
                 ),
                 listTileWidget(
