@@ -28,12 +28,12 @@ class _HomePageState extends State<HomePage> {
   String longitudesource = '';
   LocationData? currentLocation;
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-  new GlobalKey<RefreshIndicatorState>();
+      new GlobalKey<RefreshIndicatorState>();
 
   void getCurrentLocation() async {
     Location location = Location();
     location.getLocation().then(
-          (location) {
+      (location) {
         currentLocation = location;
         latitudesource = currentLocation!.latitude.toString();
         longitudesource = currentLocation!.longitude.toString();
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
         ),
         endDrawer: Padding(
           padding:
-          EdgeInsets.fromLTRB(0, statusBarHeight + appBarHeight + 1, 0, 0),
+              EdgeInsets.fromLTRB(0, statusBarHeight + appBarHeight + 1, 0, 0),
           child: drawerMenu(),
         ),
         body: BlocBuilder<CustomerBloc, CustomerState>(
@@ -161,6 +161,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
   Future<void> _refresh() {
     getCurrentLocation();
     return Future.delayed(const Duration(seconds: 0), () {});
@@ -228,7 +229,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-          ), 
+          ),
         ],
       ),
     );
@@ -300,15 +301,14 @@ class _HomePageState extends State<HomePage> {
       shrinkWrap: true,
       itemCount: openshoplist.length,
       itemBuilder: (context, index) {
-        return
-          GestureDetector(
-          onTap: (){
+        return GestureDetector(
+          onTap: () {
             navigatorKey.currentState!
                 .pushNamed(BarberDetailsPage.routeName,
-                arguments: Arguments(
-                    data: openshoplist[index],
-                    promotiondetails: promotiondetails))
-                .then((value) => getlocaldata());
+                    arguments: Arguments(
+                        data: openshoplist[index],
+                        promotiondetails: promotiondetails))
+                .then((value) => _refresh());
           },
           child: Card(
             elevation: 7,
@@ -327,56 +327,69 @@ class _HomePageState extends State<HomePage> {
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Table(
-                 // mainAxisAlignment: MainAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.start,
                   columnWidths: const {
                     0: FlexColumnWidth(),
                     1: FlexColumnWidth(),
                     2: FlexColumnWidth(),
                   },
                   children: [
-                    TableRow(
-                       children: [
-                         Row(children: [
-                         const ImageIcon(
-                           AssetImage("assets/images/location.png"),
-                           size: 10,
-                         ),
-                         Flexible(
-                           child: Container(
-                             padding: const EdgeInsets.only(left: 6, right: 6),
-                             child: Text(openshoplist[index].address!,maxLines: 1, style: textBoxTextStyle,)
-                           ),
-                         ),
-                       ],),
-                         Row(children: [
-                           const ImageIcon(
-                             AssetImage("assets/images/clock.png"),
-                             size: 10,
-                           ),
-                           Flexible(
-                             child: Padding(
-                               padding: const EdgeInsets.only(left: 6, right: 6),
-                               child: Text(openshoplist[index].wait_list.toString(),maxLines: 1, style: textBoxTextStyle,),
-                             ),
-                           ),
-                         ],),
-                         Row(children: [
-                           const ImageIcon(
-                             AssetImage("assets/images/price-tag.png"),
-                             size: 10,
-                           ),
-                           Flexible(
-                             child: Padding(
-                               padding: const EdgeInsets.only(left: 6),
-                               child: Text(
-                                 openshoplist[index].priceRange.toString(),
-                                 style: textBoxTextStyle,
-                                 maxLines: 1,
-                               ),
-                             ),
-                           ),
-                         ],)])
-
+                    TableRow(children: [
+                      Row(
+                        children: [
+                          const ImageIcon(
+                            AssetImage("assets/images/location.png"),
+                            size: 10,
+                          ),
+                          Flexible(
+                            child: Container(
+                                padding:
+                                    const EdgeInsets.only(left: 6, right: 6),
+                                child: Text(
+                                  openshoplist[index].address!,
+                                  maxLines: 1,
+                                  style: textBoxTextStyle,
+                                )),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const ImageIcon(
+                            AssetImage("assets/images/clock.png"),
+                            size: 10,
+                          ),
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 6, right: 6),
+                              child: Text(
+                                openshoplist[index].wait_list.toString(),
+                                maxLines: 1,
+                                style: textBoxTextStyle,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const ImageIcon(
+                            AssetImage("assets/images/price-tag.png"),
+                            size: 10,
+                          ),
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 6),
+                              child: Text(
+                                openshoplist[index].priceRange.toString(),
+                                style: textBoxTextStyle,
+                                maxLines: 1,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ])
                   ],
                 ),
               ),
@@ -387,10 +400,10 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     navigatorKey.currentState!
                         .pushNamed(BarberDetailsPage.routeName,
-                        arguments: Arguments(
-                            data: openshoplist[index],
-                            promotiondetails: promotiondetails))
-                        .then((value) => getlocaldata());
+                            arguments: Arguments(
+                                data: openshoplist[index],
+                                promotiondetails: promotiondetails))
+                        .then((value) => _refresh());
                   }),
             ),
           ),
@@ -504,7 +517,7 @@ class _HomePageState extends State<HomePage> {
                 listTileWidget(
                   homeText,
                   "assets/images/home.png",
-                      () {
+                  () {
                     navigatorKey.currentState!
                         .pushNamed(PerfectCutPage.routeName);
                   },
@@ -512,14 +525,14 @@ class _HomePageState extends State<HomePage> {
                 listTileWidget(
                   historyText,
                   "assets/images/history.png",
-                      () {
+                  () {
                     navigatorKey.currentState!.pushNamed(HistoryPage.routeName);
                   },
                 ),
                 listTileWidget(
                   profileText,
                   "assets/images/user.png",
-                      () {
+                  () {
                     navigatorKey.currentState!
                         .pushNamed(ProfileDetails.routeName)
                         .then((value) => getlocaldata());
@@ -528,7 +541,7 @@ class _HomePageState extends State<HomePage> {
                 listTileWidget(
                   changepasswordText,
                   "assets/images/password.png",
-                      () {
+                  () {
                     navigatorKey.currentState!
                         .pushNamed(ChangePasswordPage.routeName)
                         .then((value) => getlocaldata());
@@ -537,7 +550,7 @@ class _HomePageState extends State<HomePage> {
                 listTileWidget(
                   notificationText,
                   "assets/images/bell.png",
-                      () {
+                  () {
                     navigatorKey.currentState!
                         .pushNamed(NotificationPage.routeName);
                   },
@@ -545,14 +558,14 @@ class _HomePageState extends State<HomePage> {
                 listTileWidget(
                   supportText,
                   "assets/images/support.png",
-                      () {
+                  () {
                     navigatorKey.currentState!.pushNamed(FinishPage.routeName);
                   },
                 ),
                 listTileWidget(
                   paymentText,
                   "assets/images/payment.png",
-                      () {
+                  () {
                     navigatorKey.currentState!
                         .pushNamed(CardsDetailsPage.routeName);
                   },
@@ -560,7 +573,7 @@ class _HomePageState extends State<HomePage> {
                 listTileWidget(
                   settingsText,
                   "assets/images/settings.png",
-                      () {},
+                  () {},
                 ),
                 const SizedBox(
                   height: 180,
@@ -574,7 +587,7 @@ class _HomePageState extends State<HomePage> {
           listTileWidget(
             logoutText,
             "assets/images/logout.png",
-                () {
+            () {
               _onLogoutClicked(context);
             },
           ),
@@ -611,7 +624,7 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (context) => AlertDialog(
         contentPadding:
-        const EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 20),
+            const EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 20),
         title: Text(
           areYouSureText,
           style: textBoxTextStyle,
@@ -657,7 +670,7 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (context) => AlertDialog(
         contentPadding:
-        const EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 20),
+            const EdgeInsets.only(top: 10, bottom: 10, left: 25, right: 20),
         title: const Text(areYouSureText),
         content: const Text(doYouWantLogoutText),
         actions: <Widget>[

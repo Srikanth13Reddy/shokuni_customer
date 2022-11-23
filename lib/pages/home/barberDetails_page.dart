@@ -26,6 +26,8 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
   late Arguments args;
   final _comment = TextEditingController();
   final CustomerBloc customerBlocs = CustomerBloc();
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      new GlobalKey<RefreshIndicatorState>();
 
   double? totalamount = 0;
   double cutamount = 0;
@@ -43,6 +45,11 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
     getLocalData();
 
     super.initState();
+  }
+
+  Future<void> _refresh() {
+    getLocalData();
+    return Future.delayed(const Duration(seconds: 0), () {});
   }
 
   double updateTotalAmount() {
@@ -132,14 +139,31 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
   }
 
   Widget emptyWidget() {
-    return const SizedBox();
+    return CustomBtn(
+      onPressed: () {},
+      buttonCornerRadius: 0,
+      buttonBorderColor: roseColor,
+      textScaleFactor: 1,
+      buttonHeight: 50,
+      buttonMargin: const EdgeInsets.only(left: 20, right: 20, bottom: 15),
+      buttonName: inChairText.toUpperCase(),
+      surfaceColor: roseColor,
+      primaryColor: roseColor,
+      buttonPadding: const EdgeInsets.all(0),
+      buttonTestStyle: whiteBtnlightTextStyle,
+      buttonWidth: double.infinity,
+    );
   }
 
   Widget body() {
-    return ListView(children: [
-      headline(),
-      secondline(),
-    ]);
+    return RefreshIndicator(
+      key: _refreshIndicatorKey,
+      onRefresh: _refresh,
+      child: ListView(children: [
+        headline(),
+        secondline(),
+      ]),
+    );
   }
 
   Widget joinqueuebtn() {
@@ -245,7 +269,7 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
           ),
         ),
       ),
-      Container(
+      /*Container(
         margin: const EdgeInsets.only(
           top: 320,
         ),
@@ -318,7 +342,7 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
                 }),
           ),
         ]),
-      ),
+      ),*/
     ]);
   }
 
@@ -332,11 +356,10 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
       child: Center(
         child: Column(
           children: [
-
             Theme(
               data:
                   Theme.of(context).copyWith(dividerColor: Colors.transparent),
-              child: ExpansionTile(
+              child: ListTile(
                 title: Text(
                   standardText,
                   style: textmediumBoldStyle,
@@ -347,39 +370,37 @@ class _BarberDetailsPageState extends State<BarberDetailsPage> {
                     AssetImage("assets/images/haircut.png"),
                   ),
                 ),
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(right: 230, top: 10),
-                    child: Text(
-                      styleText,
-                      style: textmediumsemiStyle,
-                    ),
-                  ),
-                  showCutDetailsWidget(),
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      left: 30,
-                      right: 30,
-                    ),
-                    child: Divider(
-                      color: greyColor,
-                      height: 40,
-                      thickness: 1,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 210),
-                    child: Text(
-                      extraText,
-                      style: textmediumsemiStyle,
-                    ),
-                  ),
-                  showCutExtraDetailsWidget(),
-                ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(right: 230, top: 10),
+              child: Text(
+                styleText,
+                style: textmediumsemiStyle,
+              ),
+            ),
+            showCutDetailsWidget(),
+            const Padding(
+              padding: EdgeInsets.only(
+                left: 30,
+                right: 30,
+              ),
+              child: Divider(
+                color: greyColor,
+                height: 40,
+                thickness: 1,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 210),
+              child: Text(
+                extraText,
+                style: textmediumsemiStyle,
+              ),
+            ),
+            showCutExtraDetailsWidget(),
             const SizedBox(
-              height: 0,
+              height: 10,
             ),
             const Divider(
               height: 4,

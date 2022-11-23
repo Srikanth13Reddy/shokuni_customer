@@ -40,6 +40,7 @@ const String changepasswordText = 'Change Password';
 const String comingSoonText = 'Coming soon';
 const String joinQueueText = 'Join Queue';
 const String cancelQueueText = 'Cancel Queue';
+const String inChairText = 'In Chair';
 const String homeText = 'Home';
 const String firstNameText = 'First Name';
 const String oldpasswordText = 'Old Password';
